@@ -1,0 +1,90 @@
+table {
+    position: absolute; 
+    top: 250px; 
+    width:100%; 
+    border-spacing: 80px;
+    text-align: center;
+} 
+td {
+    background-color: whitesmoke;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.imagen{
+    position: absolute; 
+    top: 200px; 
+    width: 600px; 
+    height: 600px; 
+    background-color: whitesmoke; 
+    left: 100px;
+}
+.txtTituloProducto{
+    position: absolute; 
+    top: 200px; 
+    left: 800px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: xx-large;
+}
+.txtDescripcionProducto{
+    position: absolute; 
+    top: 275px; 
+    left: 800px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: x-large;
+}
+.txtPrecioProducto{
+    position: absolute; 
+    top: 575px; 
+    left: 800px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: x-large;
+}
+.btnComprarProducto{
+    position: absolute; 
+    top: 650px; 
+    left: 800px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: large;
+}
+.titulos {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    background-color: aqua;
+    text-align: center;
+    padding: 15px;
+    margin: 0;
+    left: 0;
+    position: absolute;
+    height: 50px;
+    width: 98%;
+    top: 0px;
+}
+h2 {
+    position: absolute;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: x-large;
+}
+.navbar {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    overflow: hidden;
+    background-color:navy;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 100%;
+}
+.navbar a {
+    float: left;
+    font-size: 16px;
+    color: white;
+    text-align: center;
+    padding: 14px 56px;
+    text-decoration: none;
+  }
+.footer {
+    position: absolute;
+    height: 150px;
+    left: 0;
+    width: 100%;  
+    background-color: navy;
+    color: white;
+    text-align: center;
+}
