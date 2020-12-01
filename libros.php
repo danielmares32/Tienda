@@ -1,17 +1,38 @@
+<?php 
+    session_start();
+    include("mostrarProductos.php");
+?>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <meta charset="UTF-8">
-        <title></title>
+        <title>Productos</title>
+        <link rel="stylesheet" href="estilo.css">
+        <script>
+            document.addEventListener("DOMContentLoaded",() => {
+                
+            });
+        </script>
     </head>
     <body>
+        <h1 class="titulos"><a href="index.php">MiTienda.com</a></h1>
+        <div class="navbar">
+            <a href="computo.php">Computo</a>
+            <a href="muebles.php">Muebles</a>
+            <a href="juguetes.php">Juguetes</a>
+            <a href="ropa.php">Ropa</a>
+            <a href="libros.php">Libros</a>
+            <a href="equipaje.php">Equipaje</a>
+            <a href="carrito.php">Carrito</a>
+            <a href="usuario.php">Usuario</a>
+        </div>
+        <h2 style="top: 150px; left: 100px">Libros</h2>
         <?php
-        // put your code here
+            $cat="Libros";
+            mostrarProductos($cat); 
         ?>
+        <div class="footer" style="top: 1750px">
+            
+        </div> 
     </body>
 </html>
