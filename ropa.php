@@ -26,14 +26,14 @@
             <a href="carrito.php">Carrito</a>
             <a href="usuario.php">Usuario</a>
         </div>
-        <h2 style="top: 150px; left: 100px">Productos de Hogar</h2>
-        
+        <h2 style="top: 150px; left: 100px">Productos de Ropa</h2>
         <?php
-            $cat="Hogar";
-            mostrarProductos($cat);
+            $cat="Ropa";
+            mostrarProductos($cat); 
         ?>
         <div class="footer" style="top: 1750px">
             
         </div> 
     </body>
 </html>
+

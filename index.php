@@ -20,11 +20,11 @@
             <a href="computo.php">Computo</a>
             <a href="muebles.php">Muebles</a>
             <a href="juguetes.php">Juguetes</a>
-            <a href="#cat">Categoria 4</a>
-            <a href="#cat">Categoria 5</a>
-            <a href="#cat">Categoria 6</a>
-            <a href="#cat">Carrito</a>
-            <a href="#cat">Usuario</a>
+            <a href="ropa.php">Ropa</a>
+            <a href="libros.php">Libros</a>
+            <a href="equipaje.php">Equipaje</a>
+            <a href="carrito.php">Carrito</a>
+            <a href="usuario.php">Usuario</a>
         </div>
         <h2 style="top: 150px; left: 100px">Todos los Productos</h2>
         <?php
