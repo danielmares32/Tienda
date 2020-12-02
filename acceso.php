@@ -1,7 +1,7 @@
 <?php
     session_start();
+    include("ConexionBDD.php");
 ?>
-
 <!DOCTYPE html>
 <html>
 <body>

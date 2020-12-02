@@ -16,7 +16,7 @@
     $result = $conexion->query($sql);
     echo "<table>";
     if($result->num_rows>0){
-                //Recorremos cada registro y obtenemos los valores de las columnas especificada
+        //Recorremos cada registro y obtenemos los valores de las columnas especificada
         while($row=$result->fetch_assoc()){
             if($numProd%3==0){
                 if($td){
