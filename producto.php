@@ -9,7 +9,19 @@
         <link rel="stylesheet" href="estilo.css">
         <script>
             document.addEventListener("DOMContentLoaded",() => {
-                
+                var image=document.querySelector(".imagen");
+                image.onclick=() => {
+                    var duplicar=image.cloneNode(false);
+                    duplicar.classList.remove("imagen");
+                    var lb=document.getElementById("lbInner");
+                    lb.innerHTML="";
+                    lb.appendChild(duplicar);
+                    lb=document.getElementById("lbOuter");
+                    lb.classList.add("show");
+                }
+                document.getElementById("lbOuter").onclick=() => {
+                   document.getElementById("lbOuter").classList.remove("show");
+                }
             });
         </script>
     </head>
@@ -36,14 +48,17 @@
         <div class="navbar">
             <a href="computo.php">Computo</a>
             <a href="muebles.php">Muebles</a>
-            <a href="#cat">Categoria 3</a>
-            <a href="#cat">Categoria 4</a>
-            <a href="#cat">Categoria 5</a>
-            <a href="#cat">Categoria 6</a>
-            <a href="#cat">Carrito</a>
-            <a href="#cat">Usuario</a>
+            <a href="juguetes.php">Juguetes</a>
+            <a href="ropa.php">Ropa</a>
+            <a href="libros.php">Libros</a>
+            <a href="equipaje.php">Equipaje</a>
+            <a href="carrito.php">Carrito</a>
+            <a href="usuario.php">Usuario</a>
         </div>
         <br><br><br>
+        <div id="lbOuter">
+            <div id="lbInner"></div>
+        </div>
         <img class="imagen" src="data:image/jpg;base64,<?php echo base64_encode($imagen); ?>">
         <div class="footer" style="top: 1200px">
         </div> 
