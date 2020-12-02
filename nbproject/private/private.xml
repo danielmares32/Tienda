@@ -5,8 +5,13 @@
         <group>
             <file>file:/C:/xampp/htdocs/Tienda/index.php</file>
             <file>file:/C:/xampp/htdocs/Tienda/estilo.css</file>
+            <file>file:/C:/xampp/htdocs/Tienda/libros.php</file>
+            <file>file:/C:/xampp/htdocs/Tienda/equipaje.php</file>
+            <file>file:/C:/xampp/htdocs/Tienda/mostrarProductos.php</file>
             <file>file:/C:/xampp/htdocs/Tienda/muebles.php</file>
+            <file>file:/C:/xampp/htdocs/Tienda/juguetes.php</file>
             <file>file:/C:/xampp/htdocs/Tienda/conexionBDD.php</file>
+            <file>file:/C:/xampp/htdocs/Tienda/ropa.php</file>
             <file>file:/C:/xampp/htdocs/Tienda/producto.php</file>
             <file>file:/C:/xampp/htdocs/Tienda/computo.php</file>
         </group>
