@@ -41,6 +41,7 @@
     echo "</table>";
     
     mysqli_close($conexion);
+    return $numProd;
 }
 
 ?>
