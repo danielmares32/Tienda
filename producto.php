@@ -50,7 +50,8 @@
         <span class="txtTituloProducto"><?php echo $nombre; ?></span>
         <span class="txtDescripcionProducto">Descripción<br><br><?php echo $descrip; ?></span>
         <span class="txtPrecioProducto">Precio:<?php echo "MX$      ",$precio; ?></span>
-        <form>
+        <form action="carrito.php" method="post">
+            <input type="hidden" name="producto" value="<?php $row ?>">
             <input class="btnComprarProducto" type="submit" value="Comprar">
         </form>
         <?php

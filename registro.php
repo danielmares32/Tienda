@@ -1,5 +1,6 @@
 <?php
     session_start();
+    include('conexionBDD.php');
     
     //Valida que los campos no estén vacíos
     if($_POST['nombre']!="" && $_POST['pwd']!=""){
@@ -20,7 +21,7 @@
         
         //Código SQL
         $sql = "INSERT INTO usuarios(usr,apellidos,fecha_nac,email,telefono,gustos,calle,colonia,ciudad,estado,pwd)
-	VALUES ('$usuario', '$apellidos','$fecha_nac','$email','$tel','$gustos','$calle','$colonia','$ciudad','$estado','$pwd');"
+	VALUES ('$usuario', '$apellidos','$fecha_nac','$email','$tel','$gustos','$calle','$colonia','$ciudad','$estado','$pwd');";
 
         //Realiza el query y regresa a la página principal, indicando si se registró correctamente
 	$conn=conectar();
