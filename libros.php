@@ -29,9 +29,12 @@
         <h2 style="top: 150px; left: 100px">Libros</h2>
         <?php
             $cat="Libros";
-            mostrarProductos($cat); 
+            $nProd=mostrarProductos($cat);
+            if($nProd==0){
+                $nProd=3;
+            }
         ?>
-        <div class="footer" style="top: 1750px">
+        <div class="footer" style="top:<?php echo $nProd*300; ?>px">
             
         </div> 
     </body>

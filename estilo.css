@@ -16,6 +16,50 @@ td {
     height: 600px; 
     background-color: whitesmoke; 
     left: 100px;
+    cursor: pointer;
+}
+/*LightBox*/
+#lbOuter{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    visibility: hidden;
+    opacity: 0;
+    transition: all ease 0.3s;
+}
+#lbOuter.show{
+    visibility: visible;
+    opacity: 1;
+}
+#lbInner{
+    text-align: center;
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+#lbInner img{
+    width: 40%;
+    height: auto;
+    max-height: 900px;
+}
+/*Fin LightBox*/
+
+.img{
+    height: 400px;
+    width: 400px;
+    transition: transform ease-in-out 0.3s;
+}
+.img:hover{
+    transform: scale(1.135);
+}
+.btnTitulo{
+    font-size:x-large;
+    background-color: transparent; 
+    border: 0px solid;
 }
 .txtTituloProducto{
     position: absolute; 

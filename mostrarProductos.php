@@ -16,7 +16,7 @@
     $result = $conexion->query($sql);
     echo "<table>";
     if($result->num_rows>0){
-                //Recorremos cada registro y obtenemos los valores de las columnas especificada
+        //Recorremos cada registro y obtenemos los valores de las columnas especificada
         while($row=$result->fetch_assoc()){
             if($numProd%3==0){
                 if($td){
@@ -28,9 +28,9 @@
             echo "<td>";
             echo "<form action='producto.php' method='post'>";
                 echo "<input name='id_prod' type='hidden' value='".$row['id']."'>"
-                ."<input style='height: 400px;width: 400px' type='image' src='data:image/jpg;base64,".base64_encode($row['imagen_prod'])."'><br>"
-                ."<input style='font-size:x-large;background-color: transparent; border: 0px solid' type='submit' value='".$row['nombre_prod']."'><br>"
-                ."Precio: MX$   ".$row['precio_prod']."<br>";
+                ."<input class='img' type='image' src='data:image/jpg;base64,".base64_encode($row['imagen_prod'])."'><br>"
+                ."<br><input class='btnTitulo' type='submit' value='".$row['nombre_prod']."'><br>"
+                ."Precio: MX$   ".$row['precio_prod']."<br><br>";
             echo "</form>";
             echo "</td>";
             $numProd++;
@@ -41,6 +41,7 @@
     echo "</table>";
     
     mysqli_close($conexion);
+    return $numProd;
 }
 
 ?>
