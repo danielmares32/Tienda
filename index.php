@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="estilo.css">
         <script>
             document.addEventListener("DOMContentLoaded",() => {
-                
+                localStorage.clear();
             });
             
         </script>
@@ -35,8 +35,7 @@
                 $nProd=3;
             }
         ?>
-        <div class="footer" style="top:<?php echo $nProd*300; ?>px">
-            
+        <div class="footer" style="top:<?php echo $nProd*300; ?>px">    
         </div> 
     </body>
 </html>

@@ -89,6 +89,20 @@ td {
     font-family: Verdana, Geneva, Tahoma, sans-serif; 
     font-size: large;
 }
+.txtCantidadProducto{
+    position: absolute; 
+    top: 575px; 
+    left: 1200px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: x-large;
+}
+.cantidadProducto{
+    position: absolute; 
+    top: 575px; 
+    left: 1350px; 
+    font-family: Verdana, Geneva, Tahoma, sans-serif; 
+    font-size: x-large;
+}
 .titulos {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     background-color: aqua;
