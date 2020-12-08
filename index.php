@@ -10,7 +10,7 @@
         <link rel="stylesheet" href="estilo.css">
         <script>
             document.addEventListener("DOMContentLoaded",() => {
-                localStorage.clear();
+                
             });
             
         </script>
