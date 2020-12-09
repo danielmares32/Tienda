@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <title>Carrito</title>
     <link rel="stylesheet" href="estilo.css">
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 </head>
 <body>
     <?php
@@ -61,9 +62,29 @@
             for(var i=0;i<localStorage.length;i++){
                 x.push(localStorage.key(i));
             }
-            x.sort();          
-
-            createTable(x);
+            x.sort();       
+            createTable(x); 
+            
+            btnPagar=document.createElement('input');
+            btnPagar.type="button";
+            btnPagar.value="Pagar";
+            btnPagar.onclick=()=>{
+                for(var i=0;i<localStorage.length;i++){
+                    $.post("compra.php",{
+                        i:localStorage.getItem(x[i++]),
+                        i:localStorage.getItem(x[i++]),
+                        i:localStorage.getItem(x[i])
+                    },function(data,status){});
+                }
+            }
+            btnPagar.style.position="absolute";
+            btnPagar.style.top="700px";
+            btnPagar.style.left="750px";
+            btnPagar.style.fontFamily="Verdana, Geneva, Tahoma, sans-serif";
+            btnPagar.style.fontSize="x-large";
+            document.body.appendChild(btnPagar);  
+            
+            
             
             function createTable(x) {
                 var table = document.createElement('table');
