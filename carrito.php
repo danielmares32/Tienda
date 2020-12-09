@@ -19,17 +19,21 @@
     <?php
     //}else{
         $usuario=@$_SESSION['idUsuario'];
-        $cantidad=$_POST['cantidad'];
-        $idProd=$_POST['producto'];
-        $conexion=conectar();
-        if(!$conexion){
-            echo "ERROR en conexion BDD";
+        if($_POST['cantidad']!=null){
+            $cantidad=$_POST['cantidad'];
+            $idProd=$_POST['producto'];
+            $conexion=conectar();
+            if(!$conexion){
+                echo "ERROR en conexion BDD";
+            }
+            $sql="SELECT * FROM productos WHERE id='".$idProd."'";
+            $result = $conexion->query($sql);
+            $row=$result->fetch_assoc();
+            $nombre=$row['nombre_prod'];
+            $precio=$row['precio_prod'];
+        } else {
+            $idProd='';
         }
-        $sql="SELECT * FROM productos WHERE id='".$idProd."'";
-        $result = $conexion->query($sql);
-        $row=$result->fetch_assoc();
-        $nombre=$row['nombre_prod'];
-        $precio=$row['precio_prod'];
         
     //}
     ?>
@@ -48,9 +52,11 @@
     <table>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
-            localStorage.setItem("<?php echo $idProd;?>"+"n","<?php echo $nombre; ?>");
-            localStorage.setItem("<?php echo $idProd;?>"+"c","<?php echo $cantidad; ?>");
-            localStorage.setItem("<?php echo $idProd;?>"+"p","<?php echo $precio*$cantidad; ?>");
+            if("<?php echo $idProd;?>"!==""){
+                localStorage.setItem("<?php echo $idProd;?>"+"n","<?php echo $nombre; ?>");
+                localStorage.setItem("<?php echo $idProd;?>"+"c","<?php echo $cantidad; ?>");
+                localStorage.setItem("<?php echo $idProd;?>"+"p","<?php echo $precio*$cantidad; ?>");
+            }
             var x=[];
             for(var i=0;i<localStorage.length;i++){
                 x.push(localStorage.key(i));
@@ -58,7 +64,7 @@
             x.sort();          
 
             createTable(x);
-
+            
             function createTable(x) {
                 var table = document.createElement('table');
                 var tr = document.createElement('tr');
@@ -76,25 +82,51 @@
                 table.appendChild(tr);
                 var num=0;
                 for(val of x){
-                    if(num%3==0){
-                        console.log('entre');
+                    if(num%3===0){
                         td = document.createElement('td');
-                        td.textContent="Eliminar";
+                        let eliminar=boton(val,tr,table,x,true);
+                        if(num===0)
+                            eliminar.disabled=true;
+                        td.appendChild(eliminar);
                         tr.appendChild(td);
                         table.appendChild(tr);
                         tr=document.createElement('tr');
                     }
                     td = document.createElement('td');
                     td.textContent=localStorage.getItem(val);
-                    console.log(localStorage.getItem(val));
                     tr.appendChild(td);
                     num++;
                 }
                 td = document.createElement('td');
-                td.textContent="Eliminar";
+                let eliminar=boton(val,tr,table,x,false);
+                td.appendChild(eliminar);
                 tr.appendChild(td);
                 table.appendChild(tr);
                 document.body.appendChild(table);
+            }
+
+            function boton(val,tr,table,x,posf){
+                var eliminar=document.createElement('input');
+                let val1,val2,pos;
+                eliminar.type='button';
+                eliminar.value='Eliminar';
+                eliminar.onclick=function() {
+                    table.removeChild(tr);
+                    if(posf){
+                        pos=x.indexOf(val);
+                        val=x[pos-1];
+                        val1=x[pos-2];
+                        val2=x[pos-3];
+                    } else {
+                        pos=x.indexOf(val);
+                        val1=x[pos-1];
+                        val2=x[pos-2];
+                    }
+                    localStorage.removeItem(val);
+                    localStorage.removeItem(val1);
+                    localStorage.removeItem(val2);
+                };
+                return eliminar;
             }
         });
     </script>
