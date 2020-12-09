@@ -28,6 +28,7 @@
             Nombre actual (Solo en caso de actualizar): <input type="text" name="nombre"><br>
             Nuevo nombre: <input type="text" name="nuevo"><br>
             E-Mail: <input type="text" name="email"><br>
+            Fecha de Nacimiento: <input type="date" name="fecha_nac"><br>
             Teléfono: <input type="text" name="telefono"><br>
             Gustos: <br><textarea cols='80' rows='8' name='gustos'></textarea><br>
             <h3>Dirección</h3>

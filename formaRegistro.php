@@ -14,6 +14,7 @@
             Nombre: <input type="text" name="nombre"><br>
             Apellidos: <input type="text" name="apellidos"><br>
             Contraseña: <input type="password" name="pwd"><br>
+            Fecha de Nacimiento: <input type="date" name="fecha_nac"><br>
             E-Mail: <input type="text" name="email"><br>
             Teléfono: <input type="text" name="telefono"><br>
             Gustos: <br><textarea cols='80' rows='8' name='gustos'></textarea><br>

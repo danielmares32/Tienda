@@ -20,7 +20,7 @@
 
         
         //Código SQL
-        $sql = "INSERT INTO usuarios(usr,apellidos,fecha_nac,email,telefono,gustos,calle,colonia,ciudad,estado,pwd)
+        $sql = "INSERT INTO usuarios(nombre,apellidos,fecha_nac,email,telefono,gustos,calle,colonia,ciudad,estado,pwd)
 	VALUES ('$usuario', '$apellidos','$fecha_nac','$email','$tel','$gustos','$calle','$colonia','$ciudad','$estado','$pwd');";
 
         //Realiza el query y regresa a la página principal, indicando si se registró correctamente
