@@ -21,6 +21,7 @@
                         if($row['nombre']==$_POST['nombre'] && $row['pwd']==md5($_POST['pwd'])){
                             @$_SESSION['entra']=TRUE;
                             @$_SESSION['idUsuario']=$row['id'];
+                            @$_SESSION['nombre']=$row['nombre'];
 				if($row['esAdmin']){
 					@$_SESSION['esAdmin']=TRUE;
 				}

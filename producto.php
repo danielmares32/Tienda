@@ -53,7 +53,7 @@
             <a href="libros.php">Libros</a>
             <a href="equipaje.php">Equipaje</a>
             <a href="carrito.php">Carrito</a>
-            <a href="usuario.php">Usuario</a>
+            <a href="usuario.php">Usuario</a> <!--Pregunta: ¿qué haría la página usuario.php? -->
         </div>
         <br><br><br>
         <div id="lbOuter">
