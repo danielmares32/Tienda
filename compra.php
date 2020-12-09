@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <title></title>
-    </head>
-    <body>
-        <?php
-            echo $_POST['i'];
-        ?>
-    </body>
-</html>
+<?php
+    $carrito=$_POST['prodAcompra'];
+    foreach($carrito as $value) {
+        echo $value . "<br>";
+     }
+
+?>

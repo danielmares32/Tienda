@@ -64,18 +64,20 @@
             }
             x.sort();       
             createTable(x); 
-            
             btnPagar=document.createElement('input');
             btnPagar.type="button";
             btnPagar.value="Pagar";
             btnPagar.onclick=()=>{
-                for(var i=0;i<localStorage.length;i++){
-                    $.post("compra.php",{
-                        i:localStorage.getItem(x[i++]),
-                        i:localStorage.getItem(x[i++]),
-                        i:localStorage.getItem(x[i])
-                    },function(data,status){});
+                var y=[];
+                for(var i=0;i<x.length;i++){
+                    y.push(localStorage.getItem(x[i]));
                 }
+                console.log('di click');
+                console.log(y);
+                $.post("compra.php",{
+                    'prodAcompra[]':y
+                });
+                console.log('di post');
             }
             btnPagar.style.position="absolute";
             btnPagar.style.top="700px";
@@ -83,8 +85,6 @@
             btnPagar.style.fontFamily="Verdana, Geneva, Tahoma, sans-serif";
             btnPagar.style.fontSize="x-large";
             document.body.appendChild(btnPagar);  
-            
-            
             
             function createTable(x) {
                 var table = document.createElement('table');
