@@ -50,6 +50,7 @@
         <a href="usuario.php">Usuario</a>
     </div>
     <h2 style="top: 150px; left: 100px">Productos Seleccionados para comprar</h2>
+    <input id="pagar" type="submit" value="Pagar" style="position: absolute; top: 700px; left:750px">
     <table>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
@@ -64,27 +65,22 @@
             }
             x.sort();       
             createTable(x); 
-            btnPagar=document.createElement('input');
-            btnPagar.type="button";
-            btnPagar.value="Pagar";
-            btnPagar.onclick=()=>{
+            $('#pagar').click(()=>{
                 var y=[];
+                var idsSet=new Set();
                 for(var i=0;i<x.length;i++){
                     y.push(localStorage.getItem(x[i]));
+                    idsSet.add(x[i].substring(0, x[i].length-1));
                 }
-                console.log('di click');
                 console.log(y);
+                console.log(Array.from(idsSet));
                 $.post("compra.php",{
-                    'prodAcompra[]':y
+                    'prodAcompra[]':y,
+                    'ids[]':Array.from(idsSet)
+                },function(data,status){
+                    console.log(data+" "+status);
                 });
-                console.log('di post');
-            }
-            btnPagar.style.position="absolute";
-            btnPagar.style.top="700px";
-            btnPagar.style.left="750px";
-            btnPagar.style.fontFamily="Verdana, Geneva, Tahoma, sans-serif";
-            btnPagar.style.fontSize="x-large";
-            document.body.appendChild(btnPagar);  
+            });
             
             function createTable(x) {
                 var table = document.createElement('table');
