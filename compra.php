@@ -6,10 +6,10 @@
     if(!$conexion){
         echo "ERROR en conexion BDD";
     }
-        
     $usuario=@$_SESSION['idUsuario'];
     $carrito=$_POST['prodAcompra'];
     $ids=$_POST['ids'];
+    echo "<h1>".$carrito[0]."</h1>";
     $a=0;
     for($i=0;$i<sizeof($carrito);$i++){
         $idProd=$ids[$a++];

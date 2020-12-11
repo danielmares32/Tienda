@@ -50,7 +50,7 @@
         <a href="usuario.php">Usuario</a>
     </div>
     <h2 style="top: 150px; left: 100px">Productos Seleccionados para comprar</h2>
-    <input id="pagar" type="submit" value="Pagar" style="position: absolute; top: 700px; left:750px">
+    <input id="pagar" type="submit" value="Pagar" style="position: absolute; top: 1200px; left:750px">
     <table>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
@@ -79,6 +79,7 @@
                     'ids[]':Array.from(idsSet)
                 },function(data,status){
                     console.log(data+" "+status);
+                    window.location.href = "compra.php";
                 });
             });
             
