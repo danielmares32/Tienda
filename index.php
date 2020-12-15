@@ -29,7 +29,7 @@
             <?php if(!@$_SESSION['entra']){?>
             <a href="login.php">Iniciar Sesión</a>
             <?php }else{ 
-            echo "<p>Hola "+ @$_SESSION['nombre']+ "</p>"; //Cambiar <p> por (?)
+            echo "<a>Hola ".@$_SESSION['nombre']."</a>"; //Cambiar <p> por (?)
                 if(@$_SESSION['esAdmin']){?>                    
                     <a href="administrar.php">Administrar Página</a>
             <?php

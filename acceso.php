@@ -1,6 +1,6 @@
 <?php
     session_start();
-    include("ConexionBDD.php");
+    //include("ConexionBDD.php");
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,19 +18,26 @@
                 if($check>0){
                     while($row = mysqli_fetch_assoc($result)){
                         //Compara información encriptada
-                        if($row['nombre']==$_POST['nombre'] && $row['pwd']==md5($_POST['pwd'])){
+                        if($row['email']==$_POST['email'] && $row['pwd']==md5($_POST['pwd'])){
                             @$_SESSION['entra']=TRUE;
                             @$_SESSION['idUsuario']=$row['id'];
-                            @$_SESSION['nombre']=$row['nombre'];
+                            @$_SESSION['nombre']=$row['nombre'];                        
 				if($row['esAdmin']){
 					@$_SESSION['esAdmin']=TRUE;
 				}
                         }
+                        
                     }
                 }else{
                     @$_SESSION['entra']=false;
                     ?> <p><strong>No estás registrado</strong><br><a href="formaRegistro.php">Click aquí</a></p><?php
                 }
+                
+            }
+            if(@$_SESSION['entra']){
+                header('Location: index.php?correcto');
+            }else{
+                header('Location: index.php?incorrecto');
             }
     ?>
     

@@ -7,6 +7,15 @@
         <meta charset="UTF-8">
         <title>Producto</title>
         <link rel="stylesheet" href="estilo.css">
+        <style>
+            .opinion{
+                position: absolute; 
+                top: 900px;
+                font-family: Arial, Helvetica, sans-serif;
+                width: 80%;
+                margin: 0;
+            }
+        </style>
         <script>
             document.addEventListener("DOMContentLoaded",() => {
                 var image=document.querySelector(".imagen");
@@ -61,7 +70,7 @@
             <div id="lbInner"></div>
         </div>
         <img class="imagen" src="data:image/jpg;base64,<?php echo base64_encode($imagen); ?>">
-        <div class="footer" style="top: 1200px">
+        <div class="footer" style="top: 1300px">
         </div> 
         <span class="txtTituloProducto"><?php echo $nombre; ?></span>
         <span class="txtDescripcionProducto">Descripción<br><br><?php echo $descrip; ?></span>
@@ -72,6 +81,42 @@
             <input class="cantidadProducto" type="number" name="cantidad" min="1" max="5" value="1">
             <input class="btnComprarProducto" type="submit" value="Comprar">
         </form>
+        <h2 style="position:absolute;top:900px;left:100px">Opiniones</h2>
+        <?php
+            //Se crea una tabla extrayendo los datos de la base de datos
+            $sql = "SELECT * FROM opinion WHERE id_prod=".$idProd." ORDER BY fecha DESC";
+            $result = $conexion->query($sql);
+            echo "<table class=opinion border=1>";
+                    echo "<tr>"
+                            . "<th>Comentario</th>"
+                            . "<th>Usuario</th>"
+                            . "<th>Fecha</th>"
+                       . "</tr>";
+            if($result->num_rows>0){
+                //Recorremos cada registro y obtenemos los valores de las columnas especificada
+                while($row=$result->fetch_assoc()){
+                    echo "<tr>"
+                            . "<td>".$row['comentario']."</td>"
+                            . "<td>".buscarusr($row['id_usr'],$conexion)."</td>"
+                            . "<td>".$row['fecha']."</td>"
+                       . "</tr>";
+                    echo "</form>";
+                }
+            } else {
+                echo "0 results";
+            }
+            echo "</table>";
+            
+            function buscarusr($idusuario,$conexion){
+                //Buscar el id de usuario con el nombre de usuario
+                $sql2="SELECT * FROM usuarios WHERE id='$idusuario'";
+                $result = $conexion->query($sql2);
+                $row=$result->fetch_assoc(); 
+                $usr=$row['nombre']." ".$row['apellidos'];
+                //fin de busqueda
+                return $usr;
+            }
+        ?>
         <?php
             mysqli_close($conexion);
         ?>
