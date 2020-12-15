@@ -20,7 +20,7 @@
     <?php
     }else{
         $usuario=@$_SESSION['idUsuario'];
-        if($_POST['cantidad']!=null){
+        if(isset($_POST['cantidad'])){
             $cantidad=$_POST['cantidad'];
             $idProd=$_POST['producto'];
             $conexion=conectar();
@@ -33,7 +33,7 @@
             $nombre=$row['nombre_prod'];
             $precio=$row['precio_prod'];
         } else {
-            $idProd='';
+            $idProd='-1';
         }
         
     }
@@ -51,34 +51,44 @@
         <a href="usuario.php">Usuario</a>
     </div>
     <h2 style="top: 150px; left: 100px">Productos Seleccionados para comprar</h2>
-    <input id="pagar" type="submit" value="Pagar" style="position: absolute; top: 1200px; left:750px">
+    <input id="pagar" type="submit" value="Pagar" style="position: absolute; top: 1200px; left:750px; font-size:large">
     <table>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
-            if("<?php echo $idProd;?>"!==""){
+            <?php if($idProd!="-1"){ ?>
                 localStorage.setItem("<?php echo $idProd;?>"+"n","<?php echo $nombre; ?>");
                 localStorage.setItem("<?php echo $idProd;?>"+"c","<?php echo $cantidad; ?>");
                 localStorage.setItem("<?php echo $idProd;?>"+"p","<?php echo $precio*$cantidad; ?>");
-            }
+            <?php } ?> 
             var x=[];
-            for(var i=0;i<localStorage.length;i++){
-                x.push(localStorage.key(i));
-            }
-            x.sort();       
-            createTable(x); 
-            $('#pagar').click(()=>{
-                var y=[];
-                var idsSet=new Set();
-                for(var i=0;i<x.length;i++){
-                    y.push(localStorage.getItem(x[i]));
-                    idsSet.add(x[i].substring(0, x[i].length-1));
+            if(localStorage.length==0){
+                var h2 = document.createElement('h2');
+                h2.textContent="El carrito esta vacio";
+                h2.style.position="absolute";
+                h2.style.top="300px";
+                h2.style.left="100px";
+                document.body.appendChild(h2);
+            } else {
+                for(var i=0;i<localStorage.length;i++){
+                    x.push(localStorage.key(i));
                 }
-                console.log(y);
-                console.log(Array.from(idsSet));
-                var params = { "prodAcompra[]":y,"ids":Array.from(idsSet) };
-                var str = jQuery.param( params );            
-                window.location.href="compra.php?"+str;
-            });
+                x.sort();       
+                createTable(x); 
+                $('#pagar').click(()=>{
+                    var y=[];
+                    var idsSet=new Set();
+                    for(var i=0;i<x.length;i++){
+                        y.push(localStorage.getItem(x[i]));
+                        idsSet.add(x[i].substring(0, x[i].length-1));
+                    }
+                    console.log(y);
+                    console.log(Array.from(idsSet));
+                    var params = { "prodAcompra[]":y,"ids":Array.from(idsSet) };
+                    var str = jQuery.param( params );            
+                    window.location.href="compra.php?"+str;
+                });
+            }
+            
             
             function createTable(x) {
                 var table = document.createElement('table');
@@ -140,6 +150,7 @@
                     localStorage.removeItem(val);
                     localStorage.removeItem(val1);
                     localStorage.removeItem(val2);
+                    window.location.href="carrito.php";
                 };
                 return eliminar;
             }
