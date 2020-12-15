@@ -47,6 +47,7 @@
         <a href="libros.php">Libros</a>
         <a href="equipaje.php">Equipaje</a>
         <a href="carrito.php">Carrito</a>
+        <a href="chat.php">Chat</a>
         <a href="usuario.php">Usuario</a>
     </div>
     <h2 style="top: 150px; left: 100px">Productos Seleccionados para comprar</h2>
@@ -74,13 +75,9 @@
                 }
                 console.log(y);
                 console.log(Array.from(idsSet));
-                $.post("compra.php",{
-                    'prodAcompra[]':y,
-                    'ids[]':Array.from(idsSet)
-                },function(data,status){
-                    console.log(data+" "+status);
-                    window.location.href = "compra.php";
-                });
+                var params = { "prodAcompra[]":y,"ids":Array.from(idsSet) };
+                var str = jQuery.param( params );            
+                window.location.href="compra.php?"+str;
             });
             
             function createTable(x) {
