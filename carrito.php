@@ -11,14 +11,14 @@
 </head>
 <body>
     <?php
-    //if(!@$_SESSION['entra']){
+    if(!@$_SESSION['entra']){
     ?>
-    <!--        <script language="javascript" type="text/javascript">
-                window.alert("Debes estar logeado para realizar una compra");
-            </script>
-            <a href="login.php">Iniciar Sesión</a> -->
+        <script language="javascript" type="text/javascript">
+            window.alert("Debes estar logeado para realizar una compra");
+            window.location.href='login.php';
+        </script>
     <?php
-    //}else{
+    }else{
         $usuario=@$_SESSION['idUsuario'];
         if($_POST['cantidad']!=null){
             $cantidad=$_POST['cantidad'];
@@ -36,7 +36,7 @@
             $idProd='';
         }
         
-    //}
+    }
     ?>
     <h1 class="titulos"><a href="index.php">MiTienda.com</a></h1>
     <div class="navbar">

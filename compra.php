@@ -17,5 +17,6 @@
         $sql="INSERT INTO comprar VALUES('".$usuario."','".$idProd."','".date('Y-m-d H:i:s')."','".$cantidad."','".$pago."')";
         $result = $conexion->query($sql);
     }
+    mysqli_close($conexion);
     header('Location:index.php');
 ?>

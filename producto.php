@@ -10,10 +10,20 @@
         <style>
             .opinion{
                 position: absolute; 
-                top: 900px;
+                top: 1200px;
                 font-family: Arial, Helvetica, sans-serif;
                 width: 80%;
-                margin: 0;
+                left: 200px;
+            }
+            .aopinion{
+                width: 80%; 
+                height:150px; 
+                text-align:center; 
+                position:absolute; 
+                left:200px; 
+                top:900px; 
+                font-family:Arial, Helvetica, sans-serif; 
+                font-size:large;
             }
         </style>
         <script>
@@ -50,6 +60,7 @@
                 $precio=$row['precio_prod'];
                 $descrip=$row['descripcion_prod'];
                 $imagen=$row['imagen_prod'];
+                $existencia=$row['existencia'];
             //fin de busqueda
             
         ?>
@@ -70,18 +81,20 @@
             <div id="lbInner"></div>
         </div>
         <img class="imagen" src="data:image/jpg;base64,<?php echo base64_encode($imagen); ?>">
-        <div class="footer" style="top: 1300px">
+        <div class="footer" style="top: 1800px">
         </div> 
         <span class="txtTituloProducto"><?php echo $nombre; ?></span>
         <span class="txtDescripcionProducto">Descripción<br><br><?php echo $descrip; ?></span>
         <span class="txtPrecioProducto">Precio:<?php echo "MX$      ",$precio; ?></span>
         <span class="txtCantidadProducto">Cantidad:</span>
+
         <form action="carrito.php" method="post">
             <input type="hidden" name="producto" value="<?php echo $idProd; ?>">
-            <input class="cantidadProducto" type="number" name="cantidad" min="1" max="5" value="1">
+            <input class="cantidadProducto" type="number" name="cantidad" min="<?php if($existencia=="0"){echo "0";}else{echo "1";} ?>" max="<?php echo $existencia; ?>" value="<?php if($existencia=="0"){echo "0";}else{echo "1";} ?>">
             <input class="btnComprarProducto" type="submit" value="Comprar">
         </form>
-        <h2 style="position:absolute;top:900px;left:100px">Opiniones</h2>
+
+        <h2 style="position:absolute;top:1200px;left:250px">Opiniones</h2>
         <?php
             //Se crea una tabla extrayendo los datos de la base de datos
             $sql = "SELECT * FROM opinion WHERE id_prod=".$idProd." ORDER BY fecha DESC";
@@ -117,6 +130,13 @@
                 return $usr;
             }
         ?>
+
+        <form action="agregarComentario.php" method="post">
+            <input name="idProd" type="hidden" value="<?php echo $idProd; ?>">
+            <input name="AgregarOpinion" class="aopinion" type="textarea" placeholder="Escribe tu opinion">
+            <input style="position:absolute;top: 1100px;left: 775px;font-size:large" type="submit" value="Enviar">
+        </form>
+
         <?php
             mysqli_close($conexion);
         ?>

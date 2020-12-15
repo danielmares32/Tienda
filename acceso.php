@@ -18,13 +18,13 @@
                 if($check>0){
                     while($row = mysqli_fetch_assoc($result)){
                         //Compara información encriptada
-                        if($row['email']==$_POST['email'] && $row['pwd']==md5($_POST['pwd'])){
+                        if($row['email']==$_POST['nombre'] && $row['pwd']==md5($_POST['pwd'])){
                             @$_SESSION['entra']=TRUE;
                             @$_SESSION['idUsuario']=$row['id'];
                             @$_SESSION['nombre']=$row['nombre'];                        
-				if($row['esAdmin']){
-					@$_SESSION['esAdmin']=TRUE;
-				}
+                            if($row['esAdmin']){
+                                @$_SESSION['esAdmin']=TRUE;
+                            }
                         }
                         
                     }
