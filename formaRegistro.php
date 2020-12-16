@@ -10,7 +10,7 @@
     </head>
     <body>
         <form action="registro.php" method="post">
-            
+            <h3>Datos Generales</h3>
             Nombre: <input type="text" name="nombre"><br>
             Apellidos: <input type="text" name="apellidos"><br>
             Contraseña: <input type="password" name="pwd"><br>
@@ -25,5 +25,6 @@
             Estado: <input type="text" name="estado"><br><br>
             <input type="submit" name="registro" value="Registrar">
         </form>
+        <p><a href="index.php">Inicio</a></p>
     </body>
 </html>

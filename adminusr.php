@@ -2,7 +2,7 @@
     session_start();
     include('conexionBDD.php');
     
-    $conn=conectar();
+    
     
     if(isset($_POST['borrar'])){
         borrar();
@@ -19,8 +19,9 @@
     
     
     function borrar(){
-        $nombre=$_POST['nombre'];
-         $sql = "DELETE FROM usuarios WHERE nombre='$nombre'";
+        $conn=conectar();
+        $email=$_POST['nombre'];
+        $sql = "DELETE FROM usuarios WHERE email='$email'";
          
          if(mysqli_query($conn, $sql)){
              header('Location: administrar.php?borrado_exitoso');
@@ -29,9 +30,12 @@
          }
     }
     
-    function actualizar(){        
-        $actual=$_POST['nombre'];
+    function actualizar(){    
+        $conn=conectar();
+        $nom_actual=$_POST['nombre'];
+        $ap_actual=$_POST['apellidos_act'];
         $nuevo=$_POST['nuevo'];
+        $ap_new=$_POST['apellidos_new'];
         $email=$_POST['email'];
         $tel=$_POST['telefono'];
         $gustos=$_POST['gustos'];
@@ -43,7 +47,10 @@
         $sql = "UPDATE usuarios SET nombre='$nuevo'";
         if($email!=""){
             $sql .= ", email='$email'";
-        }        
+        } 
+        if($ap_new!=""){
+            $sql .= ", apellidos='$ap_new'";
+        }
         if($tel!=""){
             $sql .= ", telefono='$tel'";
         }
@@ -65,16 +72,18 @@
         if($estado!=""){
             $sql .= ", estado='$estado'";
         }
-        $sql .= " WHERE nombre='$actual'";
+        $sql .= " WHERE nombre='$actual' AND apellidos='$ap_actual'";
         if(mysqli_query($conn, $sql)){
-             header('Location: administrar.php?borrado_exitoso');
+             header('Location: administrar.php?actualizado_exitoso');
          }else{
-             header('Location: administrar.php?borrado_no_exitoso');
+             header('Location: administrar.php?actualizado_no_exitoso');
          }
     }
     
     function agregar(){
+        $conn=conectar();
         $nombre=$_POST['nuevo'];
+        $apellidos=$_POST['apellidos_new'];
         $email=$_POST['email'];
         $tel=$_POST['telefono'];
         $gustos=$_POST['gustos'];
@@ -90,7 +99,11 @@
         if($email!=""){
             $sql1 .= ", email";
             $sql2 .= ", '$email'";
-        }        
+        }    
+        if($apellidos!=""){
+            $sql1 .= ", apellidos";
+            $sql2 .= ", '$apellidos'";
+        }
         if($tel!=""){
             $sql1 .= ", telefono";
             $sql2 .= ", '$tel'";
@@ -122,7 +135,7 @@
         $sql1 .= ")";
         $sql2 .= ")";
         
-        $sql = $sql1+$sql2;
+        $sql = $sql1.$sql2;
         
         if(mysqli_query($conn, $sql)){
              header('Location: administrar.php?agregado_exitoso');
