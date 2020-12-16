@@ -90,8 +90,7 @@
             <div id="lbInner"></div>
         </div>
         <img class="imagen" src="data:image/jpg;base64,<?php echo base64_encode($imagen); ?>">
-        <div class="footer" style="top: 1800px">
-        </div> 
+        
         <span class="txtTituloProducto"><?php echo $nombre; ?></span>
         <span class="txtDescripcionProducto">Descripción<br><br><?php echo $descrip; ?></span>
         <span class="txtPrecioProducto">Precio:<?php echo "MX$      ",$precio; ?></span>
@@ -108,6 +107,7 @@
             //Se crea una tabla extrayendo los datos de la base de datos
             $sql = "SELECT * FROM opinion WHERE id_prod=".$idProd." ORDER BY fecha DESC";
             $result = $conexion->query($sql);
+            $numFilas = $result->num_rows;
             echo "<table class=opinion border=1>";
                     echo "<tr>"
                             . "<th>Comentario</th>"
@@ -139,15 +139,15 @@
                 return $usr;
             }
         ?>
-
+        <?php
+            mysqli_close($conexion);
+            $top=1600+$numFilas*55;
+            echo "<div class='footer' style='top: ".$top."px'></div>";
+        ?>
         <form action="agregarComentario.php" method="post">
             <input name="idProd" type="hidden" value="<?php echo $idProd; ?>">
             <input name="AgregarOpinion" class="aopinion" type="textarea" placeholder="Escribe tu opinion">
             <input style="position:absolute;top: 1100px;left: 775px;font-size:large" type="submit" value="Enviar">
         </form>
-
-        <?php
-            mysqli_close($conexion);
-        ?>
     </body>
 </html>

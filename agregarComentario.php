@@ -11,6 +11,7 @@
     $usuario=@$_SESSION['idUsuario'];
     $sql="INSERT INTO opinion VALUES('default','".$opinion."','".date('Y-m-d H:i:s')."','".$usuario."','".$idProd."')";
     $result = $conexion->query($sql);
+    echo $result;
     mysqli_close($conexion);
 ?>
 <script>
