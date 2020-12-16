@@ -10,6 +10,7 @@
     $carrito=$_GET['prodAcompra'];
     $ids=$_GET['ids'];
     $a=0;
+    $txtTabla='';
     for($i=0;$i<sizeof($carrito);$i++){
         $idProd=$ids[$a++];
         $cantidad=$carrito[$i++];
@@ -19,8 +20,9 @@
         $existencia=buscarProd($idProd,$conexion)-$cantidad;
         $sql2="UPDATE productos SET existencia='$existencia' WHERE id='$idProd'";
         $result = $conexion->query($sql2);
-        mandarMail($cantidad,$idProd,$pago,$usuario);
+        $txtTabla=$txtTabla."<tr> <td>$cantidad</td> <td>$idProd</td> <td>$pago</td> <td>$usuario</td> </tr>";
     }
+    mandarMail($txtTabla);
     mysqli_close($conexion);
 
     function buscarProd($idProd, $conexion){
@@ -33,7 +35,7 @@
         return $existencia;
     }
 
-    function mandarMail($cantidad,$idProd,$pago,$usuario){
+    function mandarMail($txtTabla){
         $to = "danielmares32@gmail.com";
         $subject = "Orden de Compra";
         $message = "
@@ -42,19 +44,14 @@
                 <title>Orden de Compra</title>
                 </head>
                 <body>
-                    <table>
+                    <table style='text-align:center' border=1>
                         <tr>
                             <th>Cantidad</th>
                             <th>Producto</th>
                             <th>Pago</th>
                             <th>Usuario</th>
                         </tr>
-                        <tr>
-                            <td>$cantidad</td>
-                            <td>$idProd</td>
-                            <td>$pago</td>
-                            <td>$usuario</td>
-                        </tr>
+                        $txtTabla
                     </table>
                 </body>
             </html>
