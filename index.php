@@ -30,7 +30,10 @@
             <a href="login.php">Iniciar Sesión</a>
             <?php }else{ 
             echo "<a>Hola ".@$_SESSION['nombre']."</a>"; //Cambiar <p> por (?)
-                if(@$_SESSION['esAdmin']){?>                    
+            ?>
+            <a href="logout.php?salir=true">Cerrar Sesión</a>
+            <?php
+            if(@$_SESSION['esAdmin']){?>                    
                     <a href="administrar.php">Administrar Página</a>
             <?php
                 }

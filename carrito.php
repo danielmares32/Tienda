@@ -48,16 +48,19 @@
         <a href="equipaje.php">Equipaje</a>
           <a href="carrito.php">Carrito</a>
         <a href="chat.php">Chat</a>
-        <?php if(!@$_SESSION['entra']){?>
-        <a href="login.php">Iniciar Sesión</a>
-        <?php }else{ 
-        echo "<a>Hola ".@$_SESSION['nombre']."</a>"; //Cambiar <p> por (?)
+         <?php if(!@$_SESSION['entra']){?>
+            <a href="login.php">Iniciar Sesión</a>
+            <?php }else{ 
+            echo "<a>Hola ".@$_SESSION['nombre']."</a>"; //Cambiar <p> por (?)
+            ?>
+            <a href="logout.php?salir=true">Cerrar Sesión</a>
+            <?php
             if(@$_SESSION['esAdmin']){?>                    
-                <a href="administrar.php">Administrar Página</a>
-        <?php
+                    <a href="administrar.php">Administrar Página</a>
+            <?php
+                }
             }
-        }
-        ?>
+            ?>
     </div>
     <h2 style="top: 200px; left: 100px">Productos Seleccionados para comprar</h2>
     <input id="pagar" type="submit" value="Pagar" style="position: absolute; left:750px; font-size:large">
