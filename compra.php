@@ -9,6 +9,18 @@
     $usuario=@$_SESSION['idUsuario'];
     $carrito=$_GET['prodAcompra'];
     $ids=$_GET['ids'];
+    $usrData=buscarusr($usuario,$conexion);
+    $nombre=$usrData['nombre'];
+    $apellidos=$usrData['apellidos'];
+    $tel=$usrData['telefono'];
+    $calle=$usrData['calle'];
+    $colonia=$usrData['colonia'];
+    $estado=$usrData['estado'];
+    $ciudad=$usrData['ciudad'];
+    $datos="<h3>Nombre: $nombre </h3> <br> <h3>Apellidos: $apellidos </h3> <br>"
+            ."<h3>Telefono: $tel </h3> <br> <h3>Calle: $calle </h3> <br>"
+            ."<h3>Colonia: $colonia </h3> <br> <h3>Estado: $estado </h3> <br>"
+            ."<h3>Ciudad: $ciudad </h3> <br> ";
     $a=0;
     $txtTabla='';
     for($i=0;$i<sizeof($carrito);$i++){
@@ -20,10 +32,20 @@
         $existencia=buscarProd($idProd,$conexion)-$cantidad;
         $sql2="UPDATE productos SET existencia='$existencia' WHERE id='$idProd'";
         $result = $conexion->query($sql2);
-        $txtTabla=$txtTabla."<tr> <td>$cantidad</td> <td>$idProd</td> <td>$pago</td> <td>$usuario</td> </tr>";
+        $txtTabla=$txtTabla."<tr> <td>$cantidad</td> <td>$idProd</td> <td>$pago</td> </tr>";
     }
-    mandarMail($txtTabla);
+    mandarMail($txtTabla,$datos);
     mysqli_close($conexion);
+
+    function buscarusr($idusuario,$conexion){
+        //Buscar el id de usuario con el nombre de usuario
+        $sql2="SELECT * FROM usuarios WHERE id='$idusuario'";
+        $result = $conexion->query($sql2);
+        $row=$result->fetch_assoc(); 
+        $usr=$row;
+        //fin de busqueda
+        return $usr;
+    }
 
     function buscarProd($idProd, $conexion){
         //Buscar la existencia con el id
@@ -35,7 +57,7 @@
         return $existencia;
     }
 
-    function mandarMail($txtTabla){
+    function mandarMail($txtTabla,$datos){
         $to = "danielmares32@gmail.com";
         $subject = "Orden de Compra";
         $message = "
@@ -44,12 +66,12 @@
                 <title>Orden de Compra</title>
                 </head>
                 <body>
+                    $datos
                     <table style='text-align:center' border=1>
                         <tr>
                             <th>Cantidad</th>
                             <th>Producto</th>
                             <th>Pago</th>
-                            <th>Usuario</th>
                         </tr>
                         $txtTabla
                     </table>

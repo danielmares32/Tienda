@@ -1,6 +1,10 @@
 <?php
     session_start();
     include('conexionBDD.php');
+    $conexion=conectar();
+    if(!$conexion){
+        echo "ERROR en conexion BDD";
+    }
 ?>
 <!DOCTYPE html>
 <html>
@@ -46,20 +50,17 @@
             }
             ?>
         </div>
+        <?php $idUsr=$_POST['idUsuario']; ?>
         <h2 style="top: 200px; left: 200px">Preguntar</h2>
-        <form action="agregarMsg.php" method="post">
+        <form action="agregarMsgAdmin.php" method="post">
+            <input name="idUsuario" type="hidden" value="<?php echo $idUsr; ?>">
             <input name="pregunta" class="pregunta" type="textarea" placeholder="Escribe tu pregunta">
             <input style="position:absolute;top: 850px;left: 400px;" type="submit" value="Enviar">
         </form>    
         <div class="footer" style="top:900px"></div>
-        <h2 style="top: 200px; left: 900px">Chat</h2>
+        <h2 style="top: 200px; left: 900px">Chat con <?php echo buscarusr($idUsr,$conexion); ?> </h2>
         <div class="pregunta" style="padding:10px;text-align:justify;left:900px; background-color:aliceblue" name="respuestas">
             <?php
-                $idUsr=$_SESSION['idUsuario'];
-                $conexion=conectar();
-                if(!$conexion){
-                    echo "ERROR en conexion BDD";
-                }
                 $sql="SELECT * FROM chat WHERE id_usr='$idUsr' ORDER BY fecha_hora ASC";
                 $result = $conexion->query($sql);
                 if($result->num_rows>0){
@@ -71,7 +72,15 @@
                     echo "0 results";
                 }
 
-                
+                function buscarusr($idusuario,$conexion){
+                    //Buscar el id de usuario con el nombre de usuario
+                    $sql2="SELECT * FROM usuarios WHERE id='$idusuario'";
+                    $result = $conexion->query($sql2);
+                    $row=$result->fetch_assoc(); 
+                    $usr=$row['nombre'];
+                    //fin de busqueda
+                    return $usr;
+                }
             ?>
         </div>
     </body>
