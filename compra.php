@@ -19,6 +19,7 @@
         $existencia=buscarProd($idProd,$conexion)-$cantidad;
         $sql2="UPDATE productos SET existencia='$existencia' WHERE id='$idProd'";
         $result = $conexion->query($sql2);
+        mandarMail($cantidad,$idProd,$pago,$usuario);
     }
     mysqli_close($conexion);
 
@@ -30,6 +31,38 @@
         $existencia=$row['existencia'];
         //fin de busqueda
         return $existencia;
+    }
+
+    function mandarMail($cantidad,$idProd,$pago,$usuario){
+        $to = "danielmares32@gmail.com";
+        $subject = "Orden de Compra";
+        $message = "
+            <html>
+                <head>
+                <title>Orden de Compra</title>
+                </head>
+                <body>
+                    <table>
+                        <tr>
+                            <th>Cantidad</th>
+                            <th>Producto</th>
+                            <th>Pago</th>
+                            <th>Usuario</th>
+                        </tr>
+                        <tr>
+                            <td>$cantidad</td>
+                            <td>$idProd</td>
+                            <td>$pago</td>
+                            <td>$usuario</td>
+                        </tr>
+                    </table>
+                </body>
+            </html>
+            ";
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        $headers .= 'From: <webmaster@example.com>' . "\r\n";
+        mail($to,$subject,$message,$headers);
     }
 ?>
 <script>
