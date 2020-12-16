@@ -17,16 +17,19 @@
     </head>
     <body>
         <h1>Usuarios</h1>
-        <h2>Borrar</h2>
+        <h3>Borrar</h3>
         <form method="post" action="adminusr.php"><br>
-            Nombre: <input type="text" name="nombre"><br>
+            Correo Electrónico: <input type="text" name="nombre"><br>
             <input type="submit" name="borrar" value="Eliminar Usuario"> 
         </form>
         
-        <h2>Agregar o Actualizar</h2>
+        <h3>Agregar o Actualizar</h3>
         <form method="post" action="adminusr.php"><br>
-            Nombre actual (Solo en caso de actualizar): <input type="text" name="nombre"><br>
-            Nuevo nombre: <input type="text" name="nuevo"><br>
+            Nombre actual: <input type="text" name="nombre">
+            Apellidos actuales: <input type="text" name="apellidos_act"><br>
+            <label>Obligatorios</label>
+            Nuevo nombre: <input type="text" name="nuevo">
+            Nuevos apellidos: <input type="text" name="apellidos_new"><br>
             E-Mail: <input type="text" name="email"><br>
             Fecha de Nacimiento: <input type="date" name="fecha_nac"><br>
             Teléfono: <input type="text" name="telefono"><br>
@@ -40,19 +43,25 @@
             <input type="submit" name="agregar" value="Agregar Usuario">
         </form>
         <h1>Productos</h1>
-            <h2>Borrar</h2>
+            <h3>Borrar</h3>
         <form method="post" action="adminprod.php"><br>
             Nombre: <input type="text" name="nombre"><br>
             <input type="submit" name="borrar" value="Eliminar Producto"> 
-        </form>
-            <h2>Agregar o Actualizar</h2>
-            Nombre actual (Solo en caso de actualizar): <input type="text" name="nombre"><br>
-            Nuevo nombre: <input type="text" name="nuevo"><br>
+        
+            <h3>Agregar o Actualizar</h3>
+            Nombre actual: <input type="text" name="nombre">
+            Nuevo nombre: <input type="text" name="nuevo">
+            Nuevos apellidos: <input type="text" name="apellidos_new"><br>
             Categoria: <input type="text" name="categoria"><br>
             Precio: <input type="text" name="precio"><br>
             Descripción: <br><textarea cols='80' rows='8' name='descripcion'></textarea><br>
             <!-- Investigar cómo subir archivos <name="imagen"><br>-->
+            <label>Elegir Imagen:</label>
+                <input type="file" name="imagen">
             <input type="submit" name="actualizar" value="Actualizar Producto">
             <input type="submit" name="agregar" value="Agregar Producto">
+        </form>
+            
+            <a href="index.php">Regresar</a>
     </body>
 </html>

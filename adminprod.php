@@ -2,7 +2,7 @@
     session_start();
     include('conexionBDD.php');
     
-    $conn=conectar();
+    
     
     if(isset($_POST['borrar'])){
         borrar();
@@ -17,8 +17,9 @@
     }
     
     function borrar(){
+        $conn=conectar();
         $nombre=$_POST['nombre'];
-         $sql = "DELETE FROM productos WHERE nombre='$nombre'";
+        $sql = "DELETE FROM productos WHERE nombre='$nombre'";
          
          if(mysqli_query($conn, $sql)){
              header('Location: administrar.php?borrado_exitoso');
@@ -28,12 +29,13 @@
     }
     
     function actualizar(){
+        $conn=conectar();
         $nombre=$_POST['nombre'];
         $nuevo=$_POST['nuevo'];
         $cat=$_POST['categoria'];
         $precio=$_POST['precio'];
         $desc=$_POST['descripcion'];
-        //$imagen=$_POST['imagen'];
+        $imagen= getImagen();
         $sql = "UPDATE usuarios SET nombre_prod='$nuevo'";
         
         if($cat!=""){
@@ -45,9 +47,9 @@
         if($desc!=""){
             $sql .= ", descripcion_prod='$desc'";
         }
-        //if($imagen!=""){
-          //  $sql .= ", imagen_prod='$imagen'";
-        //}       
+        if($imagen!=""){
+            $sql .= ", imagen_prod='$imagen'";
+        }       
         $sql .= " WHERE nombre='$nombre'";
         if(mysqli_query($conn, $sql)){
              header('Location: administrar.php?actualizado_exitoso');
@@ -57,11 +59,14 @@
     }
          
     function agregar(){
+        $conn=conectar();
         $nombre=$_POST['nuevo'];
         $cat=$_POST['categoria'];
         $precio=$_POST['precio'];
         $desc=$_POST['descripcion'];
-        //$imagen=$_POST['imagen'];
+        $imagen=getImagen();
+        
+        
         $sql1="INSERT INTO productos (nombre_prod";
         $sql2="VALUES ('$nombre'";
         
@@ -77,14 +82,14 @@
             $sql1 .= ", descripcion_prod";
             $sql2 .= ", '$desc'";
         }
-        //if($imagen!=""){
-          //  $sql1 .= ", imagen_prod";
-          //  $sql2 .= ", '$imagen'";
-        //}       
+        if($imagen!=""){
+            $sql1 .= ", imagen_prod";
+            $sql2 .= ", '$imagen'";
+        }       
         $sql1 .= ")";
         $sql2 .= ")";
         
-        $sql = $sql1+$sql2;
+        $sql = $sql1.$sql2;
         
         if(mysqli_query($conn, $sql)){
              header('Location: administrar.php?agregado_exitoso');
@@ -92,4 +97,13 @@
              header('Location: administrar.php?agregado_no_exitoso');
          }
         
+    }
+    
+    function getImagen(){
+        $check= getimagesize($_FILES['imagen']['tmp_name']);
+        if($check !== false){
+            $imagen=$_FILES['imagen']['tmp_name'];
+            $imgContenido=addslashes(file_get_contents($imagen));
+        }
+        return $imgContenido;
     }

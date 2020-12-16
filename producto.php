@@ -74,7 +74,7 @@
             <a href="equipaje.php">Equipaje</a>
             <a href="carrito.php">Carrito</a>
             <a href="chat.php">Chat</a>
-             <?php if(!@$_SESSION['entra']){?>
+            <?php if(!@$_SESSION['entra']){?>
             <a href="login.php">Iniciar Sesión</a>
             <?php }else{ 
             echo "<a>Hola ".@$_SESSION['nombre']."</a>"; //Cambiar <p> por (?)

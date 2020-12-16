@@ -3,10 +3,10 @@
     include('conexionBDD.php');
     
     //Valida que los campos no estén vacíos
-    if($_POST['nombre']!="" && $_POST['pwd']!=""){
+    if($_POST['nombre']!="" && $_POST['pwd']!="" && $_POST['email']!=""){
         $usuario=$_POST['nombre'];
         //Encriptación por MD5
-        $contra=md5($_POST['pwd']);
+        $pwd=md5($_POST['pwd']);
 
 	$apellidos=$_POST['apellidos'];
 	$fecha_nac=$_POST['fecha_nac'];
