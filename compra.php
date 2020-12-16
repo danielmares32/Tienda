@@ -61,8 +61,13 @@
             ";
         $headers = "MIME-Version: 1.0" . "\r\n";
         $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-        $headers .= 'From: <webmaster@example.com>' . "\r\n";
-        mail($to,$subject,$message,$headers);
+        $headers .= 'From: Your name <danielmares32@gmail.com>' . "\r\n";
+        if (mail($to,$subject,$message,$headers)) {
+            echo "Email successfully sent to $to...";
+        } else {
+            echo "Email sending failed...";
+        }
+        
     }
 ?>
 <script>

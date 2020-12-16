@@ -89,7 +89,7 @@
                 }
                 x.sort();       
                 createTable(x);
-                document.querySelector('#pagar').style.top=400+localStorage.length*35;
+                document.querySelector('#pagar').style.top=420+localStorage.length*35;
                 document.querySelector('.footer').style.top=800+localStorage.length*35; 
                 $('#pagar').click(()=>{
                     var y=[];
