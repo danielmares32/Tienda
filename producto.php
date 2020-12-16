@@ -74,7 +74,16 @@
             <a href="equipaje.php">Equipaje</a>
             <a href="carrito.php">Carrito</a>
             <a href="chat.php">Chat</a>
-            <a href="usuario.php">Usuario</a> <!--Pregunta: ¿qué haría la página usuario.php? -->
+            <?php if(!@$_SESSION['entra']){?>
+            <a href="login.php">Iniciar Sesión</a>
+            <?php }else{ 
+            echo "<a>Hola ".@$_SESSION['nombre']."</a>"; //Cambiar <p> por (?)
+                if(@$_SESSION['esAdmin']){?>                    
+                    <a href="administrar.php">Administrar Página</a>
+            <?php
+                }
+            }
+            ?>
         </div>
         <br><br><br>
         <div id="lbOuter">

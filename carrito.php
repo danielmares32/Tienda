@@ -46,12 +46,22 @@
         <a href="ropa.php">Ropa</a>
         <a href="libros.php">Libros</a>
         <a href="equipaje.php">Equipaje</a>
-        <a href="carrito.php">Carrito</a>
+          <a href="carrito.php">Carrito</a>
         <a href="chat.php">Chat</a>
-        <a href="usuario.php">Usuario</a>
+        <?php if(!@$_SESSION['entra']){?>
+        <a href="login.php">Iniciar Sesión</a>
+        <?php }else{ 
+        echo "<a>Hola ".@$_SESSION['nombre']."</a>"; //Cambiar <p> por (?)
+            if(@$_SESSION['esAdmin']){?>                    
+                <a href="administrar.php">Administrar Página</a>
+        <?php
+            }
+        }
+        ?>
     </div>
-    <h2 style="top: 150px; left: 100px">Productos Seleccionados para comprar</h2>
-    <input id="pagar" type="submit" value="Pagar" style="position: absolute; top: 1200px; left:750px; font-size:large">
+    <h2 style="top: 200px; left: 100px">Productos Seleccionados para comprar</h2>
+    <input id="pagar" type="submit" value="Pagar" style="position: absolute; left:750px; font-size:large">
+    <div class="footer" style="position: absolute;">
     <table>
     <script>
         document.addEventListener("DOMContentLoaded",() => {
@@ -68,12 +78,16 @@
                 h2.style.top="300px";
                 h2.style.left="100px";
                 document.body.appendChild(h2);
+                document.querySelector('.footer').style.top=800; 
+                document.querySelector('#pagar').style.visibility="hidden";
             } else {
                 for(var i=0;i<localStorage.length;i++){
                     x.push(localStorage.key(i));
                 }
                 x.sort();       
-                createTable(x); 
+                createTable(x);
+                document.querySelector('#pagar').style.top=400+localStorage.length*35;
+                document.querySelector('.footer').style.top=800+localStorage.length*35; 
                 $('#pagar').click(()=>{
                     var y=[];
                     var idsSet=new Set();

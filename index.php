@@ -37,7 +37,7 @@
             }
             ?>
         </div>
-        <h2 style="top: 150px; left: 100px">Todos los Productos</h2>
+        <h2 style="top: 200px; left: 100px">Todos los Productos</h2>
         <?php
             $cat="Todos";
             $nProd=mostrarProductos($cat);

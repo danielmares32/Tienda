@@ -25,9 +25,18 @@
             <a href="equipaje.php">Equipaje</a>
             <a href="carrito.php">Carrito</a>
             <a href="chat.php">Chat</a>
-            <a href="usuario.php">Usuario</a>
+            <?php if(!@$_SESSION['entra']){?>
+            <a href="login.php">Iniciar Sesión</a>
+            <?php }else{ 
+            echo "<a>Hola ".@$_SESSION['nombre']."</a>"; //Cambiar <p> por (?)
+                if(@$_SESSION['esAdmin']){?>                    
+                    <a href="administrar.php">Administrar Página</a>
+            <?php
+                }
+            }
+            ?>
         </div>
-        <h2 style="top: 150px; left: 100px">Juguetes</h2>
+        <h2 style="top: 200px; left: 100px">Juguetes</h2>
         <?php
             $cat="Juguetes";
             $nProd=mostrarProductos($cat);
