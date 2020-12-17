@@ -8,6 +8,7 @@
         <meta charset="UTF-8">
         <title>Chat</title>
         <link rel="stylesheet" href="estilo.css">
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
         <style>
             .pregunta{
                 width: 500px; 
@@ -53,26 +54,43 @@
         </form>    
         <div class="footer" style="top:900px"></div>
         <h2 style="top: 200px; left: 900px">Chat</h2>
-        <div class="pregunta" style="padding:10px;text-align:justify;left:900px; background-color:aliceblue" name="respuestas">
-            <?php
-                $idUsr=$_SESSION['idUsuario'];
-                $conexion=conectar();
-                if(!$conexion){
-                    echo "ERROR en conexion BDD";
-                }
-                $sql="SELECT * FROM chat WHERE id_usr='$idUsr' ORDER BY fecha_hora ASC";
-                $result = $conexion->query($sql);
-                if($result->num_rows>0){
-                    //Recorremos cada registro y obtenemos los valores de las columnas especificada
-                    while($row=$result->fetch_assoc()){
-                        echo "<h3 style='font-size:small'>".$row['fecha_hora'].":".$row['msg']."</h3>";
-                    }
-                } else {
-                    echo "0 results";
-                }
+        <div class="pregunta" style="padding:10px;text-align:justify;left:900px; background-color:aliceblue; overflow-y: scroll;" id="respuestas"></div>
+        <script>
+            $(function(){
+                mostrarMsg();
+            });
 
-                
-            ?>
-        </div>
+            function removeAllChildNodes(parent) {
+                while (parent.firstChild) {
+                    parent.removeChild(parent.firstChild);
+                }
+            }
+
+            function mostrarMsg(){
+                $.ajax({
+                    url: 'msgBD.php',
+                    type: 'POST',
+                    success: function(res){
+                        const container = document.querySelector('#respuestas');
+                        removeAllChildNodes(container);
+                        console.log('entre a AJAX');
+                        console.log(res.replace(/<p><\/p>/gi,""));
+                        var js = JSON.parse(res.replace(/<p><\/p>/gi,""));
+                        console.log(js);
+                        console.log(js.length);
+                        for(var i=0;i<js.length;i++){
+                            var h3=document.createElement('h3');
+                            h3.style.fontSize="small";
+                            h3.innerHTML=js[i].fecha_hora+":"+js[i].msg;
+                            document.querySelector('#respuestas').append(h3);
+                        }
+                    }
+                })
+            }
+
+            setInterval(function(){
+                mostrarMsg();
+            },1000);
+        </script>    
     </body>
 </html>
