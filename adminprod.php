@@ -36,6 +36,7 @@
         $precio=$_POST['precio'];
         $desc=$_POST['descripcion'];
         $imagen= getImagen();
+        $existencias=$_POST['existencias'];
         $sql = "UPDATE usuarios SET nombre_prod='$nuevo'";
         
         if($cat!=""){
@@ -46,6 +47,9 @@
         }
         if($desc!=""){
             $sql .= ", descripcion_prod='$desc'";
+        }
+        if($existencias!=""){
+            $sql .= ", existencia='$existencias'";
         }
         if($imagen!=""){
             $sql .= ", imagen_prod='$imagen'";
@@ -64,6 +68,7 @@
         $cat=$_POST['categoria'];
         $precio=$_POST['precio'];
         $desc=$_POST['descripcion'];
+        $existencias=$_POST['existencias'];
         $imagen=getImagen();
         
         
@@ -81,6 +86,10 @@
         if($desc!=""){
             $sql1 .= ", descripcion_prod";
             $sql2 .= ", '$desc'";
+        }
+        if($existencias!=""){
+            $sql1 .= ", existencia";
+            $sql2 .= ", '$existencias'";
         }
         if($imagen!=""){
             $sql1 .= ", imagen_prod";

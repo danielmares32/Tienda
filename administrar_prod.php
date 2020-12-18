@@ -81,6 +81,9 @@
                 <td>Descripción:</td><td><textarea cols='30' rows='8' name='descripcion'></textarea></td><br>
             </tr>
             <tr>
+                <td>Existencias:</td><td><input type="text" name="existencias"></td>
+            </tr>
+            <tr>
                 <td><label>Elegir imagen</label></td>
                 <td><input type="file" name="imagen"></td>
             </tr>
