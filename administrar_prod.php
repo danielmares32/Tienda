@@ -63,7 +63,7 @@
         </form>
         
         <h3>Agregar o Actualizar</h3>
-        <form method="post" action="adminprod.php"><br>
+        <form method="post" action="adminprod.php" enctype="multipart/form-data"><br>
             <table style="position: absolute; top:260px; left:472px">
             <tr>
                 <td>Nombre actual: </td><td><input type="text" name="nombre"></td><br>
@@ -82,6 +82,10 @@
             </tr>
             <tr>
                 <td>Existencias:</td><td><input type="text" name="existencias"></td>
+            </tr>
+            <tr>
+                <td><label>Elegir imagen</label></td>
+                <td><input type="file" name="imagen"></td>
             </tr>
                 <td style="align-self: center"><input type="submit" name="actualizar" value="Actualizar Producto"></td>
                 <td style="align-self: center"><input type="submit" name="agregar" value="Agregar Producto"></td>
