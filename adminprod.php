@@ -35,7 +35,6 @@
         $cat=$_POST['categoria'];
         $precio=$_POST['precio'];
         $desc=$_POST['descripcion'];
-        $imagen= getImagen();
         $existencias=$_POST['existencias'];
         $sql = "UPDATE usuarios SET nombre_prod='$nuevo'";
         
@@ -51,9 +50,6 @@
         if($existencias!=""){
             $sql .= ", existencia='$existencias'";
         }
-        if($imagen!=""){
-            $sql .= ", imagen_prod='$imagen'";
-        }       
         $sql .= " WHERE nombre='$nombre'";
         if(mysqli_query($conn, $sql)){
              header('Location: administrar.php?actualizado_exitoso');
@@ -69,7 +65,6 @@
         $precio=$_POST['precio'];
         $desc=$_POST['descripcion'];
         $existencias=$_POST['existencias'];
-        $imagen=getImagen();
         
         
         $sql1="INSERT INTO productos (nombre_prod";
@@ -91,10 +86,6 @@
             $sql1 .= ", existencia";
             $sql2 .= ", '$existencias'";
         }
-        if($imagen!=""){
-            $sql1 .= ", imagen_prod";
-            $sql2 .= ", '$imagen'";
-        }       
         $sql1 .= ")";
         $sql2 .= ")";
         
@@ -108,11 +99,3 @@
         
     }
     
-    function getImagen(){
-        $check= getimagesize($_FILES['imagen']['tmp_name']);
-        if($check !== false){
-            $imagen=$_FILES['imagen']['tmp_name'];
-            $imgContenido=addslashes(file_get_contents($imagen));
-        }
-        return $imgContenido;
-    }

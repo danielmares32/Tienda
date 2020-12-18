@@ -83,10 +83,6 @@
             <tr>
                 <td>Existencias:</td><td><input type="text" name="existencias"></td>
             </tr>
-            <tr>
-                <td><label>Elegir imagen</label></td>
-                <td><input type="file" name="imagen"></td>
-            </tr>
                 <td style="align-self: center"><input type="submit" name="actualizar" value="Actualizar Producto"></td>
                 <td style="align-self: center"><input type="submit" name="agregar" value="Agregar Producto"></td>
             </tr>
