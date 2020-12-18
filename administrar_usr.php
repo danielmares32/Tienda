@@ -18,7 +18,7 @@
         body{
                 text-align: center;
                 font-size:20;
-                font-family: Arial;
+		font-family: Arial;
             }
         input[type="submit"]{
                 padding: 10px;
@@ -43,7 +43,7 @@
             }
         a{
                 position: absolute;
-                top: 750px;
+                top: 800px;
                 left: 740px;
             }
     </style>
@@ -54,8 +54,7 @@
             <table style="position: absolute; top:110px; left:610px">
                 <tr>
                     <td>Correo Electrónico:</td> <td><input type="text" name="nombre"></td><br>
-                </tr>
-                
+                </tr>                
             </table>
                 <input type="submit" name="borrar" value="Eliminar Usuario">
         </form>

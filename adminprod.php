@@ -19,7 +19,7 @@
     function borrar(){
         $conn=conectar();
         $nombre=$_POST['nombre'];
-        $sql = "DELETE FROM productos WHERE nombre='$nombre'";
+        $sql = "DELETE FROM productos WHERE nombre_prod='$nombre'";
          
          if(mysqli_query($conn, $sql)){
              header('Location: administrar.php?borrado_exitoso');

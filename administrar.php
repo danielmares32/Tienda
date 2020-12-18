@@ -27,7 +27,7 @@
             }
             body{
                 text-align: center;
-                font-family: Arial;
+		font-family: Arial;
             }
     </style>
     <body>
