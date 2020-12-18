@@ -23,6 +23,15 @@
         </style>
     </head>
     <body>
+    <?php
+    if(!@$_SESSION['entra']){
+    ?>
+        <script language="javascript" type="text/javascript">
+            window.alert("Debes estar logeado para acceder al chat");
+            window.location.href='login.php';
+        </script>
+    <?php
+    }else{ ?>        
     <h1 class="titulos"><a href="index.php">MiTienda.com</a></h1>
         <div class="navbar">
             <a href="computo.php">Computo</a>
@@ -93,4 +102,5 @@
             },1000);
         </script>    
     </body>
+    <?php } ?>
 </html>
