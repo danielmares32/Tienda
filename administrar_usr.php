@@ -18,6 +18,7 @@
         body{
                 text-align: center;
                 font-size:20;
+                font-family: Arial;
             }
         input[type="submit"]{
                 padding: 10px;
@@ -42,15 +43,15 @@
             }
         a{
                 position: absolute;
-                top: 850px;
-                left: 940px;
+                top: 750px;
+                left: 740px;
             }
     </style>
     <body>
         <h1>Usuarios</h1>
         <h3>Borrar</h3>
         <form method="post" action="adminusr.php"><br>
-            <table style="position: absolute; top:110px; left:810px">
+            <table style="position: absolute; top:110px; left:610px">
                 <tr>
                     <td>Correo Electrónico:</td> <td><input type="text" name="nombre"></td><br>
                 </tr>
@@ -61,7 +62,7 @@
         
         <h3>Agregar o Actualizar</h3>
         <form method="post" action="adminusr.php"><br>
-            <table style="position: absolute; top:260px; left:672px">
+            <table style="position: absolute; top:260px; left:472px">
             <tr>
                 <td>Nombre actual: </td><td><input type="text" name="nombre"></td><br>
             </tr>
@@ -106,8 +107,6 @@
             </tr>
             </table>
         </form>
-
-            
             <a href="administrar.php">Regresar</a>
     </body>
 </html>

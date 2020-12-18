@@ -27,6 +27,7 @@
             }
             body{
                 text-align: center;
+                font-family: Arial;
             }
     </style>
     <body>
@@ -37,5 +38,6 @@
         <form action="administrar_prod.php">
             <input type="submit" value="Administrar Productos">
         </form>
+        <a href="index.php">Regresar</a>
     </body>
 </html>

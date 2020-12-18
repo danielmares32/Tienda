@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Administrar Usuarios</title>
+        <title>Administrar Productos</title>
         <!--<link rel="stylesheet" href="estilo.css">-->
         <script>
             document.addEventListener("DOMContentLoaded",() => {
@@ -18,6 +18,7 @@
         body{
                 text-align: center;
                 font-size:20;
+                font-family: Arial;
             }
         input[type="submit"]{
                 padding: 10px;
@@ -43,26 +44,27 @@
         a{
                 position: absolute;
                 top: 650px;
-                left: 940px;
+                left: 740px;
             }
+
     </style>
     <body>
         <h1>Productos</h1>
         <h3>Borrar</h3>
         <form method="post" action="adminprod.php"><br>
-            <table style="position: absolute; top:110px; left:870px">
+            <table style="position: absolute; top:110px; left:670px">
                 <tr>
                     <td>Nombre</td> <td><input type="text" name="nombre"></td><br>
                 </tr>
                 
-                <input type="submit" name="borrar" value="Eliminar Producto">
-            </table>
                 
+            </table>
+            <input type="submit" name="borrar" value="Eliminar Producto">                
         </form>
         
         <h3>Agregar o Actualizar</h3>
         <form method="post" action="adminprod.php"><br>
-            <table style="position: absolute; top:260px; left:672px">
+            <table style="position: absolute; top:260px; left:472px">
             <tr>
                 <td>Nombre actual: </td><td><input type="text" name="nombre"></td><br>
             </tr>          
